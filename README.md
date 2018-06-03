@@ -1,3 +1,7 @@
+# Binding to integrate Siemens SPC intrusion system and Jeedom
+
+Premiers test ! On va essayer d'alimenter directement des variables grâce à l'API de Jeedom
+
 # Binding to integrate Siemens SPC intrusion system and Fibaro Home Center 2
 
 This nodejs module is used to integrate Siemens SPC intrusion system and Fibaro Home Center 2. 
