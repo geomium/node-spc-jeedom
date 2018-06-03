@@ -155,7 +155,7 @@ function handleSpcZoneData(data) {
                     break;
             }
 
-            var statusVariable = 'ZONE_' + zone.id + '_STATUS;
+            var statusVariable = 'ZONE_' + zone.id + '_STATUS';
 
             setJeedomVariable(statusVariable, zone_status);
         }
