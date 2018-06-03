@@ -63,14 +63,13 @@ More event types can very easy be added to the module.
 ## Installation
       
 	git clone https://github.com/geomium/node-spc-jeedom-1
-	cd node-spc-fibaro-hc2-binding
+	cd node-spc-jeedom-1
 	npm install
 	
 ## Configuration
 
 - Modify the settings in config.json according to your environment.
 
-NOTE! To allow automatically creation of the global variables, it seems, at least in FW 4.040, that you have to use user admin.
 
 ## Start
 	./node-spc-jeedom-1.js
