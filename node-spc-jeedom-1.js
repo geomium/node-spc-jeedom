@@ -65,20 +65,20 @@ function setJeedomVariable(Variable, value){
 function handleSpcAreaData(data) {
 
     data.area.forEach(function(area) {
-        var area_mode = "inconnu";
+        var area_mode = "unknown";
 
         switch (parseInt(area.mode)) {
             case 0:
-                area_mode = "désactivé";
+                area_mode = "unset";
                 break;
             case 1:
-                area_mode = "partiel_a";
+                area_mode = "partset_a";
                 break;
             case 2:
-                area_mode = "partiel_b";
+                area_mode = "partset_b";
                 break;
             case 3:
-                area_mode = "activé";
+                area_mode = "set";
                 break;
         }
 
@@ -94,7 +94,7 @@ function handleSpcZoneData(data) {
     data.zone.forEach(function(zone) {
 
         if (zone.input != undefined) {
-            var zone_input = "inconnu";
+            var zone_input = "unknown";
             switch (parseInt(zone.input)) {
                 case 0:
                     zone_input = "0";
@@ -127,7 +127,7 @@ function handleSpcZoneData(data) {
         }
 
         if (zone.status != undefined) {
-            var zone_status = "inconnu";
+            var zone_status = "unknown";
             switch (parseInt(zone.status)) {
                 case 0:
                     zone_status = "ok";
