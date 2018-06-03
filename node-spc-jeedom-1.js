@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /*
-* Binding between SPC Web Gateway and Fibaro Home Center 2
+* Binding between SPC Web Gateway and Jeedom
 */
 /* Accept self signed certificate */
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
@@ -15,10 +15,10 @@ var spc_ws_client = new ws_client();
 var digest = require('./lib/http-digest-client');
 var spc_http_client = digest.createClient(config.spc_get_user, config.spc_get_password, true);
 
-// Fibaro Home Center 2 Http Client
-var hc2_http_client = require('http');
+// Jeedom Http Client
+var jeedom_http_client = require('http');
 
-// Update HC2 with current SPC Areas and Zones status
+// Update Jeedom with current SPC Areas and Zones status
 getSpcStatus('area', handleSpcAreaData);
 getSpcStatus('zone', handleSpcZoneData);
 
@@ -45,71 +45,20 @@ spc_ws_client.on('connect', function(connection) {
     });
 });
 /**********************************************************************
-* setFibaroVariable  
+* setJeedomVariable  
 **********************************************************************/
 function setFibaroVariable(globalVariableHC2, value){
 
     var options = {
-        hostname: config.hc2_host,
+        hostname: config.jeedom_host,
         port: 80,
-        path: '/api/globalVariables/' + globalVariableHC2,
-        auth: config.hc2_user + ':' + config.hc2_password,
-        method: 'PUT'
-    }
-    var req = hc2_http_client.request(options, function(res) {
-        if (res.statusCode == 404) {  /* Create variable if not found */
-           createFibaroVariable(globalVariableHC2, value);
-        }  
-        var reply = '';
-        res.on('data', function(chunk) {
-            reply += chunk;
-        });
-        res.on('end', function(){
-            console.log(reply);
-        });
-    }).on('error', function(e) {
-        console.log('Error: ' + e.message);
-    });
-
-    var data = {
-        value: value
+        path: '/core/api/jeeApi.php?apikey=' + config.jeedom_api + '&type=variable&name=' + globalVariableHC2 + '&value=' + value,
     };
-
-    req.write(JSON.stringify(data));
+    
+    var req = jeedom_http_client.request(options);
     req.end();
 }
-/**********************************************************************
-* createFibaroVariable  
-**********************************************************************/
-function createFibaroVariable(globalVariableHC2, value){
 
-    var options = {
-        hostname: config.hc2_host,
-        port: 80,
-        path: '/api/globalVariables/' + globalVariableHC2,
-        auth: config.hc2_user + ':' + config.hc2_password,
-        method: 'POST'
-    }
-    var req = hc2_http_client.request(options, function(res) {
-        var reply = '';
-        res.on('data', function(chunk) {
-            reply += chunk;
-        });
-        res.on('end', function(){
-            console.log(reply);
-        });
-    }).on('error', function(e) {
-        console.log('Error: ' + e.message);
-    });
-
-    var data = {
-        name: globalVariableHC2, 
-        value: value
-    };
-
-    req.write(JSON.stringify(data));
-    req.end();
-}
 /**********************************************************************
 * handleSpcAreaData
 **********************************************************************/
