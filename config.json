@@ -6,5 +6,5 @@
    "spc_get_user":"get_user",
    "spc_get_password":"get_pwd",
    "jeedom_host":"192.168.69.80",
-   "jeedom_api":"APIKEY",
+   "jeedom_api":"APIKEY"
 }
