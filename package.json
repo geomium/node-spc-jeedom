@@ -1,15 +1,15 @@
 {
-  "name": "spc-fibaro-hc2-binding",
+  "name": "spc-jeedom-1",
   "version": "0.10.0",
-  "description": "Binding between SPC Web Gateway and Fibaro Home Center 2",
-  "author": "Goran Lundquist <info@lundix.se>",
+  "description": "Binding between SPC Web Gateway and Jeedom",
+  "author": "Goran Lundquist <info@lundix.se> - Modified by GEOMIUM",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Goran58/node-spc-fibaro-hc2-binding.git"
+    "url": "https://github.com/geomium/node-spc-jeedom-1.git"
   },
   "dependencies": {
     "websocket": "*"
   },
   "engine": "node 0.10.x",
-  "main": "node-spc-fibaro-hc2-bindning.js"
+  "main": "node-spc-jeedom-1.js"
 }
