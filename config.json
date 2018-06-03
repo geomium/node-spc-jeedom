@@ -1,10 +1,10 @@
 {
-   "spc_gw_host":"localhost",
+   "spc_gw_host":"192.168.69.85",
    "spc_gw_port":"8088",
    "spc_ws_user":"ws_user",
    "spc_ws_password":"ws_pwd",
    "spc_get_user":"get_user",
    "spc_get_password":"get_pwd",
-   "jeedom_host":"<JEEDOM_IP_ADDRESS>",
-   "jeedom_api":"<JEEDOM_API>",
+   "jeedom_host":"192.168.69.80",
+   "jeedom_api":"l14IIUJE2RjDykh8etx2wslg7r7PWX511yIiHBMyXBpTxjww",
 }
