@@ -47,12 +47,12 @@ spc_ws_client.on('connect', function(connection) {
 /**********************************************************************
 * setJeedomVariable  
 **********************************************************************/
-function setFibaroVariable(globalVariableHC2, value){
+function setJeedomVariable(Variable, value){
 
     var options = {
         hostname: config.jeedom_host,
         port: 80,
-        path: '/core/api/jeeApi.php?apikey=' + config.jeedom_api + '&type=variable&name=' + globalVariableHC2 + '&value=' + value,
+        path: '/core/api/jeeApi.php?apikey=' + config.jeedom_api + '&type=variable&name=' + Variable + '&value=' + value,
     };
     
     var req = jeedom_http_client.request(options);
@@ -65,26 +65,26 @@ function setFibaroVariable(globalVariableHC2, value){
 function handleSpcAreaData(data) {
 
     data.area.forEach(function(area) {
-        var area_mode = "unknown";
+        var area_mode = "inconnu";
 
         switch (parseInt(area.mode)) {
             case 0:
-                area_mode = "unset";
+                area_mode = "désactivé";
                 break;
             case 1:
-                area_mode = "partset_a";
+                area_mode = "partiel_a";
                 break;
             case 2:
-                area_mode = "partset_b";
+                area_mode = "partiel_b";
                 break;
             case 3:
-                area_mode = "set";
+                area_mode = "activé";
                 break;
         }
 
-        var modeVariableHC2 = 'G_SPC_AREA_MODE_' + area.id;
+        var modeVariable = 'Secteur_' + area.id;
 
-        setFibaroVariable(modeVariableHC2, area_mode);
+        setJeedomVariable(modeVariable, area_mode);
     });
 }
 /**********************************************************************
@@ -94,40 +94,40 @@ function handleSpcZoneData(data) {
     data.zone.forEach(function(zone) {
 
         if (zone.input != undefined) {
-            var zone_input = "unknown";
+            var zone_input = "inconnu";
             switch (parseInt(zone.input)) {
                 case 0:
-                    zone_input = "closed";
+                    zone_input = "0";
                     break;
                 case 1:
-                    zone_input = "open";
+                    zone_input = "1";
                     break;
                 case 2:
-                    zone_input = "short";
+                    zone_input = "1";
                     break;
                 case 3:
-                    zone_input = "disconnected";
+                    zone_input = "1";
                     break;
                 case 4:
-                    zone_input = "pir_masked";
+                    zone_input = "1";
                     break;
                 case 5:
-                    zone_input = "dc_substitution";
+                    zone_input = "1";
                     break;
                 case 6:
-                    zone_input = "sensor_missing";
+                    zone_input = "1";
                     break;
                 case 7:
-                    zone_input = "offline";
+                    zone_input = "1";
                     break;
             }
-            var inputVariableHC2 = 'G_SPC_ZONE_INPUT_' + zone.id;
+            var inputVariable = 'ZONE_' + zone.id;
 
-            setFibaroVariable(inputVariableHC2, zone_input);
+            setJeedomVariable(inputVariable, zone_input);
         }
 
         if (zone.status != undefined) {
-            var zone_status = "unknown";
+            var zone_status = "inconnu";
             switch (parseInt(zone.status)) {
                 case 0:
                     zone_status = "ok";
@@ -155,9 +155,9 @@ function handleSpcZoneData(data) {
                     break;
             }
 
-            var statusVariableHC2 = 'G_SPC_ZONE_STATUS_' + zone.id;
+            var statusVariable = 'ZONE_' + zone.id + '_STATUS;
 
-            setFibaroVariable(statusVariableHC2, zone_status);
+            setJeedomVariable(statusVariable, zone_status);
         }
     });
 }
