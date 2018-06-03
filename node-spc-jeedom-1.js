@@ -210,9 +210,13 @@ function manageSiaEvent(message){
             case 'BU': /* Deinhibited or Deisolated */
                 getSpcStatus('zone', handleSpcZoneData);
                 break;
-            case 'CL': /* Area Activated (Full Set) */
+            case 'CL': /* Area Activated (Full Set) - Closing Report - System armed normal */
             case 'NL': /* Area Activated (Part Set)  */
             case 'OP': /* Area Deactivated */
+            case 'CQ': /* Close Area - System has been partially armed */
+            case 'CG': /* Close Area - System has been partially armed */
+            case 'OG': /* Area Deactivated (Part Set)  */
+            case 'OQ': /* Area Deactivated */
                 getSpcStatus('area', handleSpcAreaData);
                 break;
             case 'ZC': /* Zone Closed */
