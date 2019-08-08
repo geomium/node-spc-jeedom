@@ -27,16 +27,16 @@ Values:
 
 ####ZONE_&lt;ZONE_ID&gt;
 ZONE_ID is 1 - Number of defined zones.<br>
-Values:
-- "closed"
-- "open"
-- "short"
-- "disconnected"
-- "pir_masked"
-- "dc_substitution"
-- "sensor_missing"
-- "offline"
-- "unknown"
+Values: (Binary)
+- "closed" --> 0
+- "open" --> 1
+- "short" --> 1
+- "disconnected" --> 1
+- "pir_masked" --> 1
+- "dc_substitution" --> 1
+- "sensor_missing" --> 1
+- "offline" --> 1
+- "unknown" --> 1
 
 ####G_SPC_ZONE_STATUS_&lt;ZONE_ID&gt;
 ZONE_ID is 1 - Number of defined zones.<br>
@@ -62,8 +62,8 @@ More event types can very easy be added to the module.
   
 ## Installation
       
-	git clone https://github.com/geomium/node-spc-jeedom-1
-	cd node-spc-jeedom-1
+	git clone https://github.com/geomium/node-spc-jeedom
+	cd node-spc-jeedom
 	npm install
 	
 ## Configuration
@@ -72,4 +72,4 @@ More event types can very easy be added to the module.
 
 
 ## Start
-	./node-spc-jeedom-1.js
+	./node-spc-jeedom.js
